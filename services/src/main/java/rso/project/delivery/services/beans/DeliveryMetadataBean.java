@@ -25,7 +25,7 @@ public class DeliveryMetadataBean {
     @Inject
     private EntityManager em;
 
-    public List<DeliveryMetadata> getImageMetadata() {
+    public List<DeliveryMetadata> getDeliveryMetadata() {
 
         TypedQuery<DeliveryMetadataEntity> query = em.createNamedQuery(
                 "DeliveryMetadataEntity.getAll", DeliveryMetadataEntity.class);
@@ -36,7 +36,7 @@ public class DeliveryMetadataBean {
 
     }
 
-    public List<DeliveryMetadata> getImageMetadataFilter(UriInfo uriInfo) {
+    public List<DeliveryMetadata> getDeliveryMetadataFilter(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)
                 .build();
@@ -45,39 +45,37 @@ public class DeliveryMetadataBean {
                 .map(DeliveryMetadataConverter::toDto).collect(Collectors.toList());
     }
 
-    public DeliveryMetadata getImageMetadata(Integer id) {
+    public DeliveryMetadata getDeliveryMetadata(Integer id) {
 
-        DeliveryMetadataEntity imageMetadataEntity = em.find(DeliveryMetadataEntity.class, id);
+        DeliveryMetadataEntity deliveryMetadataEntity = em.find(DeliveryMetadataEntity.class, id);
 
-        if (imageMetadataEntity == null) {
+        if (deliveryMetadataEntity == null) {
             throw new NotFoundException();
         }
 
-        DeliveryMetadata deliveryMetadata = DeliveryMetadataConverter.toDto(imageMetadataEntity);
-
-        return deliveryMetadata;
+        return DeliveryMetadataConverter.toDto(deliveryMetadataEntity);
     }
 
-    public DeliveryMetadata createImageMetadata(DeliveryMetadata imageMetadata) {
+    public DeliveryMetadata createDeliveryMetadata(DeliveryMetadata imageMetadata) {
 
-        DeliveryMetadataEntity imageMetadataEntity = DeliveryMetadataConverter.toEntity(imageMetadata);
+        DeliveryMetadataEntity deliveryMetadataEntity = DeliveryMetadataConverter.toEntity(imageMetadata);
 
         try {
             beginTx();
-            em.persist(imageMetadataEntity);
+            em.persist(deliveryMetadataEntity);
             commitTx();
         } catch (Exception e) {
             rollbackTx();
         }
 
-        if (imageMetadataEntity.getId() == null) {
+        if (deliveryMetadataEntity.getId() == null) {
             throw new RuntimeException("Entity was not persisted");
         }
 
-        return DeliveryMetadataConverter.toDto(imageMetadataEntity);
+        return DeliveryMetadataConverter.toDto(deliveryMetadataEntity);
     }
 
-    public DeliveryMetadata putImageMetadata(Integer id, DeliveryMetadata imageMetadata) {
+    public DeliveryMetadata putDeliveryMetadata(Integer id, DeliveryMetadata deliveryMetadata) {
 
         DeliveryMetadataEntity c = em.find(DeliveryMetadataEntity.class, id);
 
@@ -85,28 +83,28 @@ public class DeliveryMetadataBean {
             return null;
         }
 
-        DeliveryMetadataEntity updatedImageMetadataEntity = DeliveryMetadataConverter.toEntity(imageMetadata);
+        DeliveryMetadataEntity updatedDeliveryMetadataEntity = DeliveryMetadataConverter.toEntity(deliveryMetadata);
 
         try {
             beginTx();
-            updatedImageMetadataEntity.setId(c.getId());
-            updatedImageMetadataEntity = em.merge(updatedImageMetadataEntity);
+            updatedDeliveryMetadataEntity.setId(c.getId());
+            updatedDeliveryMetadataEntity = em.merge(updatedDeliveryMetadataEntity);
             commitTx();
         } catch (Exception e) {
             rollbackTx();
         }
 
-        return DeliveryMetadataConverter.toDto(updatedImageMetadataEntity);
+        return DeliveryMetadataConverter.toDto(updatedDeliveryMetadataEntity);
     }
 
-    public boolean deleteImageMetadata(Integer id) {
+    public boolean deleteDeliveryMetadata(Integer id) {
 
-        DeliveryMetadataEntity imageMetadata = em.find(DeliveryMetadataEntity.class, id);
+        DeliveryMetadataEntity deliveryMetadata = em.find(DeliveryMetadataEntity.class, id);
 
-        if (imageMetadata != null) {
+        if (deliveryMetadata != null) {
             try {
                 beginTx();
-                em.remove(imageMetadata);
+                em.remove(deliveryMetadata);
                 commitTx();
             } catch (Exception e) {
                 rollbackTx();
