@@ -1,5 +1,5 @@
 kumuluzee:
-  name: delivery-catalog-service
+  name: delivery-service
   env:
     name: dev
   version: 1.0.0
