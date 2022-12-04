@@ -9,7 +9,7 @@ docker run -d --name pg-delivery-metadata -e POSTGRES_USER=dbuser -e POSTGRES_PA
 ## Kubernetes
 Creating secret for k8s deployment
 ```bash
-kubectl create secret generic kubernetes-postgres-connect --from-literal=password=qs028jXBmAk-qaal_JcsJ4pyuhfYpua5
+kubectl create secret generic kubernetes-postgres-connect --from-literal=password=MY_PASSWORD
 ```
 
 and to create...
