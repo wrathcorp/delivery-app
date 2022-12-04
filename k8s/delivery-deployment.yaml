@@ -17,15 +17,9 @@ spec:
           name: delivery
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
-              valueFrom:
-                secretKeyRef:
-                  name: kubernetes-postgres-connect
-                  key: database_url
+              value: jdbc:postgresql://ella.db.elephantsql.com:5432/mioqphxx
             - name: KUMULUZEE_DATASOURCES0_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: kubernetes-postgres-connect
-                  key: username
+              value: mioqphxx
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
               valueFrom:
                 secretKeyRef:
