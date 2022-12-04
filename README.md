@@ -17,3 +17,8 @@ and to create...
 kubectl create -f delivery-deployment.yaml 
 kubectl apply -f delivery-deployment.yaml 
 ```
+
+live at:
+```markdown
+http://52.137.57.130:8080/v1/deliveries
+```
