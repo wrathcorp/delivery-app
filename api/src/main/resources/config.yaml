@@ -13,6 +13,25 @@ kumuluzee:
       username: dbuser
       password: postgres
       max-pool-size: 20
+  health:
+    checks:
+      data-source-health-check:
+        type: liveness
+        jndi-name: jdbc/DeliveryMetadataDS
+    metrics:
+        web-instrumentation:
+          - name: deliveries-endpoint
+            url-pattern: /v1/delivers/*
 
 rest-properties:
   maintenance-mode: false
+  broken: true
+
+  #kumuluzee.name
+  #KUMULUEE_NAME
+
+  #kumuluzee.env.name
+  #KUMULUZEE_ENV_NAME
+
+  #kumuluzee.datasources[0].connection-url
+  #KUMULZEE_DATASOURCES0_CONNECTIONURL

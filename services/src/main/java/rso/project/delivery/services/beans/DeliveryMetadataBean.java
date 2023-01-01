@@ -2,6 +2,7 @@ package rso.project.delivery.services.beans;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import rso.project.delivery.lib.DeliveryMetadata;
 import rso.project.delivery.models.converters.DeliveryMetadataConverter;
 import rso.project.delivery.models.entities.DeliveryMetadataEntity;
@@ -36,6 +37,7 @@ public class DeliveryMetadataBean {
 
     }
 
+    @Timed
     public List<DeliveryMetadata> getDeliveryMetadataFilter(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)

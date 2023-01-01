@@ -25,6 +25,18 @@ spec:
                 secretKeyRef:
                   name: kubernetes-postgres-connect
                   key: password
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
           ports:
             - containerPort: 8080
               name: server
