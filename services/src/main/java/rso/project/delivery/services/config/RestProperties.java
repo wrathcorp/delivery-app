@@ -11,11 +11,21 @@ public class RestProperties {
     @ConfigValue(watch = true)
     private boolean maintenanceMode;
 
-    public boolean getMaintenanceMode() {
+    private boolean broken;
+
+    public boolean isMaintenanceMode() {
         return this.maintenanceMode;
     }
 
     public void setMaintenanceMode(boolean maintenanceMode) {
         this.maintenanceMode = maintenanceMode;
+    }
+
+    public boolean isBroken() {
+        return broken;
+    }
+
+    public void setBroken(boolean broken) {
+        this.broken = broken;
     }
 }
