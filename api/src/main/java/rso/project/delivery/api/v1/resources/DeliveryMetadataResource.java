@@ -106,9 +106,9 @@ public class DeliveryMetadataResource {
     })
     @PUT
     @Path("{deliveryMetadataId}")
-    public Response putImageMetadata(@Parameter(description = "Metadata ID.", required = true)
+    public Response putDeliveryMetadata(@Parameter(description = "Metadata ID.", required = true)
                                      @PathParam("deliveryMetadataId") Integer deliveryMetadataId,
-                                     @RequestBody(
+                                        @RequestBody(
                                              description = "DTO object with delivery metadata.",
                                              required = true, content = @Content(
                                              schema = @Schema(implementation = DeliveryMetadata.class)))
@@ -137,7 +137,7 @@ public class DeliveryMetadataResource {
     })
     @DELETE
     @Path("{deliveryMetadataId}")
-    public Response deleteImageMetadata(@Parameter(description = "Metadata ID.", required = true)
+    public Response deleteDeliveryMetadata(@Parameter(description = "Metadata ID.", required = true)
                                         @PathParam("deliveryMetadataId") Integer deliveryMetadataId) {
 
         boolean deleted = deliveryMetadataBean.deleteDeliveryMetadata(deliveryMetadataId);
