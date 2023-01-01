@@ -25,7 +25,7 @@ kumuluzee:
 
 rest-properties:
   maintenance-mode: false
-  broken: true
+  broken: false
 
   #kumuluzee.name
   #KUMULUEE_NAME
