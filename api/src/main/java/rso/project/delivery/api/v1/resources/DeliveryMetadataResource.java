@@ -1,5 +1,6 @@
 package rso.project.delivery.api.v1.resources;
 
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -22,16 +23,16 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.logging.Logger;
 
-
+@Log
 @ApplicationScoped
 @Path("/deliveries")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class DeliveryMetadataResource {
 
+    private final Logger log = Logger.getLogger(DeliveryMetadataResource.class.getName());
     @Context
     protected UriInfo uriInfo;
-    private final Logger log = Logger.getLogger(DeliveryMetadataResource.class.getName());
     @Inject
     private DeliveryMetadataBean deliveryMetadataBean;
 
@@ -107,12 +108,12 @@ public class DeliveryMetadataResource {
     @PUT
     @Path("{deliveryMetadataId}")
     public Response putDeliveryMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                     @PathParam("deliveryMetadataId") Integer deliveryMetadataId,
+                                        @PathParam("deliveryMetadataId") Integer deliveryMetadataId,
                                         @RequestBody(
-                                             description = "DTO object with delivery metadata.",
-                                             required = true, content = @Content(
-                                             schema = @Schema(implementation = DeliveryMetadata.class)))
-                                     DeliveryMetadata deliveryMetadata) {
+                                                description = "DTO object with delivery metadata.",
+                                                required = true, content = @Content(
+                                                schema = @Schema(implementation = DeliveryMetadata.class)))
+                                        DeliveryMetadata deliveryMetadata) {
 
         deliveryMetadata = deliveryMetadataBean.putDeliveryMetadata(deliveryMetadataId, deliveryMetadata);
 
@@ -138,7 +139,7 @@ public class DeliveryMetadataResource {
     @DELETE
     @Path("{deliveryMetadataId}")
     public Response deleteDeliveryMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                        @PathParam("deliveryMetadataId") Integer deliveryMetadataId) {
+                                           @PathParam("deliveryMetadataId") Integer deliveryMetadataId) {
 
         boolean deleted = deliveryMetadataBean.deleteDeliveryMetadata(deliveryMetadataId);
 
