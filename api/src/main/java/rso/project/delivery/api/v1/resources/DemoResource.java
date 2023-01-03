@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class DemoResource {
-    private Logger log = Logger.getLogger(DemoResource.class.getName());
+    private final Logger log = Logger.getLogger(DemoResource.class.getName());
 
     @Inject
     private RestProperties restProperties;
@@ -26,6 +26,13 @@ public class DemoResource {
     @Path("break")
     public Response makeUnhealthy() {
         restProperties.setBroken(true);
+        return Response.status(Response.Status.OK).build();
+    }
+
+    @POST
+    @Path("fix")
+    public Response makeHealthy() {
+        restProperties.setBroken(false);
         return Response.status(Response.Status.OK).build();
     }
 }
