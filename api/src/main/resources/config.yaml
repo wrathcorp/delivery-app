@@ -21,7 +21,7 @@ kumuluzee:
     metrics:
         web-instrumentation:
           - name: deliveries-endpoint
-            url-pattern: /v1/delivers/*
+            url-pattern: /v1/deliveries/*
 
 rest-properties:
   maintenance-mode: false
