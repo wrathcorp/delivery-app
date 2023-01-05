@@ -62,9 +62,9 @@ public class DeliveryMetadataResource {
     @GET
     @Path("/{deliveryMetadataId}")
     public Response getDeliveryMetadata(@Parameter(description = "Metadata ID.", required = true)
-                                        @PathParam("deliveryMetadataId") Integer imageMetadataId) {
+                                        @PathParam("deliveryMetadataId") Integer deliveryMetadataId) {
 
-        DeliveryMetadata deliveryMetadata = deliveryMetadataBean.getDeliveryMetadata(imageMetadataId);
+        DeliveryMetadata deliveryMetadata = deliveryMetadataBean.getDeliveryMetadata(deliveryMetadataId);
 
         if (deliveryMetadata == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -86,7 +86,7 @@ public class DeliveryMetadataResource {
             required = true, content = @Content(
             schema = @Schema(implementation = DeliveryMetadata.class))) DeliveryMetadata deliveryMetadata) {
 
-        // || imageMetadata.getUri() == null
+        // || deliveryMetadata.getUri() == null
         if ((deliveryMetadata.getRestaurantName() == null || deliveryMetadata.getDescription() == null)) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } else {

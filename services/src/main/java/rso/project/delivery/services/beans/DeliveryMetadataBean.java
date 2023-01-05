@@ -58,9 +58,9 @@ public class DeliveryMetadataBean {
         return DeliveryMetadataConverter.toDto(deliveryMetadataEntity);
     }
 
-    public DeliveryMetadata createDeliveryMetadata(DeliveryMetadata imageMetadata) {
+    public DeliveryMetadata createDeliveryMetadata(DeliveryMetadata deliveryMetadata) {
 
-        DeliveryMetadataEntity deliveryMetadataEntity = DeliveryMetadataConverter.toEntity(imageMetadata);
+        DeliveryMetadataEntity deliveryMetadataEntity = DeliveryMetadataConverter.toEntity(deliveryMetadata);
 
         try {
             beginTx();
